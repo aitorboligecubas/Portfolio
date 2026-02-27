@@ -1,26 +1,277 @@
 @import "tailwindcss";
 
+/* ============================================================
+   e-t.studio Minimalist Aesthetic Tokens
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #E9E8E1;
+  /* Broken warm white */
+  --color-ink: #292828;
+  /* Soft black */
+  --color-ink-12: rgba(41, 40, 40, 0.12);
+  --color-ink-04: rgba(41, 40, 40, 0.04);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+/* ============================================================
+   Typography helpers
+   ============================================================ */
+.font-serif {
+  font-weight: 400;
+  /* Luxury comes from thinness */
+}
+
+.font-body {
+  font-weight: 300;
+  font-kerning: normal;
+}
+
+.narrative-italic {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* ============================================================
+   Lenis Reset 
+   ============================================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ============================================================
+   Grid dot overlay (Optional, keeping it extremely subtle)
+   ============================================================ */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--color-ink-04) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-ink-04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ============================================================
+   Cursor
+   ============================================================ */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  /* e-t.studio exact dot */
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-bg);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.custom-cursor.hover {
+  width: 48px;
+  height: 48px;
+  background: rgba(41, 40, 40, 0.1);
+  border: 1px solid var(--color-ink);
+}
+
+.custom-cursor.hover-scroll {
+  width: 80px;
+  height: 80px;
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+/* ============================================================
+   Mobile Responsive  (≤768px)
+   ============================================================ */
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) {
+  .custom-cursor {
+    display: none !important;
+  }
+
+  html,
+  body,
+  a,
+  button {
+    cursor: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* ── Navbar ── */
+  nav {
+    padding: 20px 20px !important;
+  }
+
+  nav a {
+    font-size: 12px !important;
+  }
+
+  /* ── Hero ── */
+  #hero .hero-subtitle {
+    font-size: 12px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  #hero .hero-desc {
+    font-size: 12px !important;
+    white-space: normal !important;
+    padding: 0 24px;
+  }
+
+  /* ── About ── */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+
+  .about-grid .about-serif {
+    font-size: 24px !important;
+  }
+
+  .about-grid .about-body {
+    font-size: 15px !important;
+  }
+
+  .about-section {
+    padding: 80px 20px !important;
+  }
+
+  /* ── Projects ── */
+  .project-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 40px 20px !important;
+  }
+
+  .project-row .project-title {
+    font-size: 26px !important;
+  }
+
+  .project-row .project-desc {
+    font-size: 15px !important;
+  }
+
+  .project-row .project-link {
+    justify-content: flex-start !important;
+  }
+
+  #projects {
+    padding: 80px 0 !important;
+  }
+
+  #projects>h2 {
+    padding: 0 20px !important;
+  }
+
+  /* ── Skills Terminal ── */
+  #skills {
+    padding: 80px 16px !important;
+  }
+
+  #skills .terminal-box {
+    max-width: 100% !important;
+  }
+
+  #skills .terminal-content {
+    padding: 32px 24px 28px !important;
+    font-size: 11px !important;
+  }
+
+  /* ── Vision ── */
+  #vision {
+    padding: 96px 20px !important;
+  }
+
+  #vision h2 {
+    font-size: clamp(24px, 7vw, 40px) !important;
+  }
+
+  /* ── Contact ── */
+  .contact-layout {
+    flex-direction: column !important;
+    gap: 48px !important;
+    align-items: flex-start !important;
+  }
+
+  .contact-layout .say-hello {
+    font-size: 40px !important;
+  }
+
+  .contact-layout .contact-right {
+    text-align: left !important;
+  }
+
+  #contact {
+    padding: 96px 20px !important;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 24px 20px !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+  }
 }

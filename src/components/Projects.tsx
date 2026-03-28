@@ -75,7 +75,7 @@ export default function Projects() {
         {
             title: 'AI Financial News Curator',
             subtitle: 'Hackathon SBS × N26, 2026',
-            solution: 'Architected a decoupled serverless application using Next.js and API, delivering custom macroeconomic narratives for retail users.',
+            solution: 'AI-powered educational curator that cuts through financial news noise: personalized ranking, contextual simplification, and ELI10 explanations built with OpenAI.',
             link: 'https://github.com/arnau-sala/startBCN',
         },
     ]
